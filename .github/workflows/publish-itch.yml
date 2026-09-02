@@ -1,0 +1,34 @@
+name: Publish to itch.io
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Install butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
+
+      - name: Push HTML5 build to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
+        run: |
+          ./butler push dist huanxu767/lingpu-zhenyao:html \
+            --userversion "${GITHUB_SHA::7}"
