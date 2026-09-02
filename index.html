@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>灵圃镇妖</title>
+    <meta name="description" content="中式妖怪花园塔防：种仙草、收灵露、挡住纸人与山魈。" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>莲</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@500;700;900&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="hud" class="hud hidden">
+        <div class="sun-bank" title="灵露">
+          <div class="sun-coin" aria-hidden="true"></div>
+          <div>
+            <div class="sun-label">灵露</div>
+            <div id="sun-count">150</div>
+          </div>
+        </div>
+        <div id="seed-bar" class="seed-bar" role="toolbar" aria-label="仙草"></div>
+        <div id="item-bar" class="item-bar" aria-label="道具"></div>
+        <button id="btn-shovel" class="tool-btn" type="button">铲除</button>
+        <button id="btn-autodew" class="tool-btn" type="button" aria-pressed="true" title="自动收集灵露（Q）">自动收</button>
+        <button id="btn-pause" class="tool-btn" type="button">暂停</button>
+        <button id="btn-mute" class="tool-btn" type="button" aria-pressed="false">音效开</button>
+      </header>
+
+      <div id="stage" class="stage">
+        <div id="game"></div>
+        <div id="toast" class="toast hidden"></div>
+      </div>
+
+      <footer id="wave-footer" class="wave-footer hidden">
+        <div class="wave-track">
+          <div id="wave-fill" class="wave-fill"></div>
+          <span id="wave-flag" class="wave-flag">旗</span>
+        </div>
+        <span id="wave-label">晓露初园</span>
+        <p class="hint">点种子再点花圃 · 1-9 快捷键 · S 铲子 · Q 自动收灵露 · Esc 暂停 · M 静音</p>
+      </footer>
+    </div>
+
+    <div id="title-screen" class="overlay">
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="panel title-panel">
+        <p class="eyebrow">中式妖怪花园 · 塔防</p>
+        <h1>灵圃镇妖</h1>
+        <p class="subtitle">种仙草，点长明，立桃符</p>
+        <p class="blurb">荒坟外的纸人与游魂今夜要摸进祠堂。收集灵露，在五路花圃布阵，把它们挡在灯火这一侧。</p>
+        <div class="btn-row">
+          <button id="btn-start" class="btn primary" type="button">开始镇守</button>
+          <button id="btn-almanac" class="btn" type="button">图鉴</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="level-screen" class="overlay hidden">
+      <div class="panel wide">
+        <p class="eyebrow">选择今夜</p>
+        <h2>关卡</h2>
+        <div id="level-grid" class="level-grid"></div>
+        <div class="btn-row">
+          <button id="btn-levels-back" class="btn" type="button">返回</button>
+          <button id="btn-reset" class="btn ghost" type="button">重置进度</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="almanac-screen" class="overlay hidden">
+      <div class="panel wide">
+        <p class="eyebrow">已见之物</p>
+        <h2>图鉴</h2>
+        <div id="almanac-list" class="almanac-list"></div>
+        <button id="btn-almanac-back" class="btn" type="button">返回</button>
+      </div>
+    </div>
+
+    <div id="pause-screen" class="overlay hidden">
+      <div class="panel">
+        <h2>暂停</h2>
+        <p class="blurb">妖怪也会在原地发呆。调整阵型后再继续。</p>
+        <div class="btn-row">
+          <button id="btn-resume" class="btn primary" type="button">继续</button>
+          <button id="btn-retry-pause" class="btn" type="button">重开本关</button>
+          <button id="btn-quit" class="btn ghost" type="button">回标题</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="result-screen" class="overlay hidden">
+      <div class="panel">
+        <h2 id="result-title">今夜守住了</h2>
+        <p class="blurb" id="result-blurb"></p>
+        <p class="stat" id="result-stat"></p>
+        <div class="btn-row">
+          <button id="btn-next" class="btn primary" type="button">下一关</button>
+          <button id="btn-retry" class="btn" type="button">再守一次</button>
+          <button id="btn-result-menu" class="btn ghost" type="button">回标题</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

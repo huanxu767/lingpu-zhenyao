@@ -1,0 +1,18 @@
+{
+  "name": "lingpu-zhenyao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "灵圃镇妖 — 中式妖怪花园塔防",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.87.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
